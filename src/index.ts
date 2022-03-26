@@ -3,7 +3,7 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-25 22:37:18
+ * @LastEditTime: 2022-03-25 22:39:12
  * @LastEditors: PhilRandWu
  */
 class Node {
@@ -28,8 +28,8 @@ function BeforeOrder(root: Node) {
         return;
     }
     BeforeOrder(root.left);
-    BeforeOrder(root.right);
     console.log(root.value);
+    BeforeOrder(root.right);
 }
 
 BeforeOrder(A);
