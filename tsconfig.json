@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": ["es2016"],
+    "module": "es6" /* Specify what module code is generated. */,
+    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
+    "importHelpers": true /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
+  },
+  "include": ["./src"], // 默认编译所有的 ts ,添加配置后值编译 src 目录下的 ts
+}
