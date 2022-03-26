@@ -27,9 +27,9 @@ function BeforeOrder(root: Node) {
     if(root === null) {
         return;
     }
+    console.log(root.value);
     BeforeOrder(root.left);
     BeforeOrder(root.right);
-    console.log(root.value);
 }
 
 BeforeOrder(A);
