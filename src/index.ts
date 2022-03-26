@@ -3,7 +3,7 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-26 02:12:14
+ * @LastEditTime: 2022-03-26 02:22:25
  * @LastEditors: PhilRandWu
  */
 class Node {
@@ -21,23 +21,24 @@ const G1 = new Node('G');
 
 A1.childs.push(B1);
 A1.childs.push(C1);
-A1.childs.push(D1);
-A1.childs.push(E1);
-A1.childs.push(F1);
-A1.childs.push(G1);
+B1.childs.push(D1);
+B1.childs.push(E1);
+C1.childs.push(F1);
+C1.childs.push(G1);
 
-function deepSearch(root:Node, target:string): boolean {
-  if(root === null || target === null) {
+function wideSearch(rootArr:Node[], target:string): boolean {
+  if(rootArr === null || rootArr.length === 0 || target === null) {
     return false;
   }
-  if(root.value === target) {
-    return true;
+  let childs = [];
+  for(let i = 0; i < rootArr.length; i ++) {
+    if(rootArr[i].value === target) {
+      return true;
+    } else {
+      childs = childs.concat(rootArr[i].childs);
+    }
   }
-  let result = false;
-  for(let i = 0; i < root.childs.length; i ++) {
-    result ||= deepSearch(root.childs[i],target);
-  }
-  return result ? true : false;
+  return wideSearch(childs,target);
 }
 
-console.log(deepSearch(A1,'G'));
+console.log(wideSearch([A1],'G'));
