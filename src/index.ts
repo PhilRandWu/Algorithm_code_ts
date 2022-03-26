@@ -3,7 +3,7 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-26 01:22:45
+ * @LastEditTime: 2022-03-26 01:24:24
  * @LastEditors: PhilRandWu
  */
 class Node {
@@ -44,7 +44,7 @@ function compare(root1: Node, root2: Node): Boolean {
   if(root1.value === root2.value) {
     return true;
   }
-  return compare(root1.left, root2.left) && compare(root1.right,root2.right) || compare(root1.left, root2.right) && compare(root1.right,root2.left);
+  return compare(root1.left, root2.left) && compare(root1.right,root2.right);
 }
 
 console.log(compare(A,A1));
