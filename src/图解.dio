@@ -1,0 +1,28 @@
+<mxfile host="65bd71144e">
+    <diagram id="D5KT-FlETZNNRbSJRhos" name="第 1 页">
+        <mxGraphModel dx="564" dy="255" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;h1&gt;A&lt;/h1&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="400" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="B" style="ellipse;whiteSpace=wrap;html=1;fontStyle=0;fontSize=23;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="520" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="C" style="ellipse;html=1;fontSize=20;labelBorderColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="520" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="D" style="ellipse;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="640" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="E" style="ellipse;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="640" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="后序遍历：D E B C A" style="whiteSpace=wrap;html=1;labelBorderColor=#F0F0F0;fontSize=15;labelBackgroundColor=#2A2A27;fillColor=#FFFFFF;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="330" width="160" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
