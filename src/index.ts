@@ -3,11 +3,12 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-26 02:22:25
+ * @LastEditTime: 2022-03-27 16:22:57
  * @LastEditors: PhilRandWu
  */
 class Node {
-  public childs: Node[] = [];
+  public left: Node = null;
+  public right: Node = null;
   constructor(public value: string | number) {}
 }
 
@@ -19,26 +20,23 @@ const E1 = new Node('E');
 const F1 = new Node('F');
 const G1 = new Node('G');
 
-A1.childs.push(B1);
-A1.childs.push(C1);
-B1.childs.push(D1);
-B1.childs.push(E1);
-C1.childs.push(F1);
-C1.childs.push(G1);
+A1.left = B1;
+A1.right = C1;
+B1.left = D1;
+B1.right = E1;
+C1.left = F1;
+C1.right = G1;
 
-function wideSearch(rootArr:Node[], target:string): boolean {
-  if(rootArr === null || rootArr.length === 0 || target === null) {
-    return false;
-  }
-  let childs = [];
-  for(let i = 0; i < rootArr.length; i ++) {
-    if(rootArr[i].value === target) {
-      return true;
-    } else {
-      childs = childs.concat(rootArr[i].childs);
+function deepSearch(root:Node, target:string): boolean {
+    if(root === null || target === null) {
+      return false;
     }
-  }
-  return wideSearch(childs,target);
+    if(root.value === target) {
+      return true;
+    }
+    const left = deepSearch(root.left, target);
+    const right = deepSearch(root.right,target);
+    return left || right;
 }
 
-console.log(wideSearch([A1],'G'));
+console.log(deepSearch(A1,'C'));
