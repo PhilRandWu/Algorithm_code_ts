@@ -3,7 +3,7 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-27 16:22:57
+ * @LastEditTime: 2022-03-27 16:33:14
  * @LastEditors: PhilRandWu
  */
 class Node {
@@ -27,16 +27,20 @@ B1.right = E1;
 C1.left = F1;
 C1.right = G1;
 
-function deepSearch(root:Node, target:string): boolean {
-    if(root === null || target === null) {
+function wideSearch(rootArr:Node[], target:string): boolean {
+    if(rootArr === null || rootArr.length === 0 || target === null) {
       return false;
     }
-    if(root.value === target) {
-      return true;
+    const childList: Node[] = [];
+    for(let i = 0; i < rootArr.length; i ++) {
+      if(rootArr[i] && rootArr[i].value === target) {
+        return true;
+      } else {
+        rootArr[i].left && childList.push(rootArr[i].left);
+        rootArr[i].right && childList.push(rootArr[i].right);
+      }
     }
-    const left = deepSearch(root.left, target);
-    const right = deepSearch(root.right,target);
-    return left || right;
+    return wideSearch(childList,target);
 }
 
-console.log(deepSearch(A1,'C'));
+console.log(wideSearch([A1],'C'));
