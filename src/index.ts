@@ -3,24 +3,27 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-25 21:58:35
+ * @LastEditTime: 2022-03-25 22:12:35
  * @LastEditors: PhilRandWu
  */
-class Node {
-  public left: Node = null;
-  public right: Node = null;
-  constructor(public value: string | number) {}
+type numberArr = number[];
+
+const arr: numberArr = [];
+
+function addValue(arr: numberArr) {
+  for (let i = 0; i < 100; i++) {
+    arr.push(Math.floor(Math.random() * 900 + 100));
+  }
 }
 
-const A = new Node('A');
-const B = new Node('B');
-const C = new Node('C');
-const D = new Node('D');
-const E = new Node('E');
+function sort(arr: numberArr, target: number) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return true;
+    }
+  }
+  return false;
+}
 
-A.left = B;
-A.right = C;
-B.left = D;
-B.right = E;
-
-console.log(A);
+addValue(arr);
+console.log(sort(arr, 500));
