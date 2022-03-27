@@ -3,24 +3,57 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-25 21:58:35
+ * @LastEditTime: 2022-03-25 22:22:26
  * @LastEditors: PhilRandWu
  */
+type numberArr = number[];
+
+const arr: numberArr = [];
+
+function addNum(arr: numberArr) {
+  for (let i = 0; i < 100; i++) {
+    arr.push(Math.floor(Math.random() * 900 + 100));
+  }
+}
+
 class Node {
   public left: Node = null;
   public right: Node = null;
   constructor(public value: string | number) {}
 }
 
-const A = new Node('A');
-const B = new Node('B');
-const C = new Node('C');
-const D = new Node('D');
-const E = new Node('E');
+function addValue(root: Node, num: number) {
+    if(root === null || num === null) {
+        return;
+    }
+    if(root.value === num) {
+        return;
+    } else if(root.value > num) {
+        if(root.left === null) {
+            root.left = new Node(num);
+        } else {
+            addValue(root.left, num);
+        }
+    } else {
+        if(root.right === null) {
+            root.right = new Node(num);
+        } else {
+            addValue(root.right, num);
+        }
+    }
+}
 
-A.left = B;
-A.right = C;
-B.left = D;
-B.right = E;
+function buildSearchTree(arr: numberArr):Node {
+    if(arr === null || arr.length === 0) {
+        return;
+    }
+    const root:Node = new Node(arr[0]);
+    for(let i = 1; i < arr.length; i ++) {
+        addValue(root, arr[i]);
+    }
+    return root;
+}
 
-console.log(A);
+addNum(arr);
+const root = buildSearchTree(arr);
+console.log(root);
