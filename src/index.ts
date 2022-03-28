@@ -3,24 +3,37 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-25 21:58:35
+ * @LastEditTime: 2022-03-28 14:59:24
  * @LastEditors: PhilRandWu
  */
-class Node {
-  public left: Node = null;
-  public right: Node = null;
-  constructor(public value: string | number) {}
+
+function jump(num:number): number {
+  if(num <= 0) {
+    return -1;
+  }
+  if(num === 1) {
+    return 1;
+  }
+  if(num === 2) {
+    return 2; //1 1   2
+  }
+  let sum = 0;
+  for(let i = 1; i < num; i ++) {
+    sum += jump(num - i);
+  }
+  return sum + 1;
 }
 
-const A = new Node('A');
-const B = new Node('B');
-const C = new Node('C');
-const D = new Node('D');
-const E = new Node('E');
-
-A.left = B;
-A.right = C;
-B.left = D;
-B.right = E;
-
-console.log(A);
+// 1 1 1
+// 1 2
+// 2 1
+// 3
+console.log(jump(3));
+// 1 1 1 1
+// 1 2 1
+// 2 2
+// 2 1 1
+// 1 1 2
+// 1 3
+// 3 1
+console.log(jump(4));
