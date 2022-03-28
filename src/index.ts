@@ -3,12 +3,11 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-28 14:09:27
+ * @LastEditTime: 2022-03-28 14:24:53
  * @LastEditors: PhilRandWu
  */
 class Node {
-  public left: Node = null;
-  public right: Node = null;
+  public childs: Node[] = [];
   constructor(public value: string | number) {}
 }
 
@@ -19,94 +18,24 @@ const D1 = new Node("D");
 const F1 = new Node("F");
 const G1 = new Node("G");
 
-A1.left = B1;
-B1.left = C1;
-B1.right = D1;
-D1.right = F1;
-C1.left = G1;
+A1.childs.push(B1);
+A1.childs.push(D1);
+A1.childs.push(G1);
+B1.childs.push(C1);
+D1.childs.push(F1);
 
-/**
- * @description: 得到二叉树的深度
- * @param {Node} root
- * @return {*}
- */
-function getDeep(root: Node): number {
-  if (root === null) {
-    return 0;
+function deepSearch(root: Node, target:string): boolean {
+  if(root === null || !target) {
+    return false;
   }
-  const leftDeep = getDeep(root.left);
-  const rightDeep = getDeep(root.right);
-  return Math.max(leftDeep, rightDeep) + 1;
-}
-
-function isBalance(root: Node): Boolean {
-  if (root === null) {
+  if(root.value === target) {
     return true;
   }
-  const leftDeep = getDeep(root.left);
-  const rightDeep = getDeep(root.right);
-  if (Math.abs(leftDeep - rightDeep) > 1) {
-    return false;
-  } else {
-    return isBalance(root.left) && isBalance(root.right);
+  let result = false;
+  for(let i = 0; i < root.childs.length; i ++) {
+    result ||= deepSearch(root.childs[i],target);
   }
+  return result ? true : false;
 }
 
-function leftRotate(root: Node): Node {
-  const newRoot = root.right;
-  const changeBranch = root.right.left;
-  root.right = changeBranch;
-  newRoot.left = root;
-  return newRoot;
-}
-
-function rightRotate(root: Node): Node {
-  const newRoot = root.left;
-  const changeBranch = root.left.right;
-  root.left = changeBranch;
-  newRoot.right = root;
-  return newRoot;
-}
-
-function change(root: Node): Node {
-  if (isBalance(root)) {
-    return root;
-  }
-  if (root.left !== null) {
-    root.left = change(root.left);
-  }
-  if (root.right !== null) {
-    root.right = change(root.right);
-  }
-  const leftDeep = getDeep(root.left);
-  const rightDeep = getDeep(root.right);
-  if (Math.abs(leftDeep - rightDeep) < 2) {
-    return root;
-  } else if (leftDeep > rightDeep) {
-    const activeBranchDeep = getDeep(root.left.right);
-    const noActiveBranchDeep = getDeep(root.left.left);
-    if(activeBranchDeep > noActiveBranchDeep) {
-      root.left = leftRotate(root.left);
-    }
-    let newRoot = rightRotate(root);
-    newRoot.right = change(newRoot.right);
-    newRoot = change(newRoot);
-    return newRoot;
-  } else {
-    const activeBranchDeep = getDeep(root.right.left);
-    const noActiveBranchDeep = getDeep(root.right.right);
-    if(activeBranchDeep > noActiveBranchDeep) {
-      root.right = rightRotate(root.right);
-    }
-    let newRoot = leftRotate(root);
-    newRoot.left = change(newRoot.left);
-    newRoot = change(newRoot);
-    return newRoot;
-  }
-}
-
-console.log(isBalance(A1));
-const newRoot = change(A1);
-console.log(isBalance(newRoot));
-console.log(newRoot);
-
+console.log(deepSearch(A1,'F'));
