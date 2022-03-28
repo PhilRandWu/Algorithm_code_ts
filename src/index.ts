@@ -3,24 +3,19 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-25 21:58:35
+ * @LastEditTime: 2022-03-28 14:50:23
  * @LastEditors: PhilRandWu
  */
-class Node {
-  public left: Node = null;
-  public right: Node = null;
-  constructor(public value: string | number) {}
+
+function Fibonacci(num: number): number {
+  if (num <= 0) return -1;
+  if (num === 1) {
+    return 1;
+  }
+  if (num === 2) {
+    return 1;
+  }
+  return Fibonacci(num - 1) + Fibonacci(num - 2);
 }
 
-const A = new Node('A');
-const B = new Node('B');
-const C = new Node('C');
-const D = new Node('D');
-const E = new Node('E');
-
-A.left = B;
-A.right = C;
-B.left = D;
-B.right = E;
-
-console.log(A);
+console.log(Fibonacci(4));
