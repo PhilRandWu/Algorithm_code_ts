@@ -3,7 +3,7 @@
  * @Author: PhilRandWu
  * @Github: https://github/PhilRandWu
  * @Date: 2022-03-25 21:53:35
- * @LastEditTime: 2022-03-27 17:20:44
+ * @LastEditTime: 2022-03-28 13:58:16
  * @LastEditors: PhilRandWu
  */
 class Node {
@@ -16,10 +16,12 @@ const A1 = new Node("A");
 const B1 = new Node("B");
 const C1 = new Node("C");
 const D1 = new Node("D");
+const F1 = new Node("F");
 
 A1.left = B1;
 B1.left = C1;
 B1.right = D1;
+D1.left = F1;
 
 /**
  * @description: 得到二叉树的深度
@@ -79,8 +81,18 @@ function change(root: Node): Node {
   if (Math.abs(leftDeep - rightDeep) < 2) {
     return root;
   } else if (leftDeep > rightDeep) {
+    const activeBranchDeep = getDeep(root.left.right);
+    const noActiveBranchDeep = getDeep(root.left.left);
+    if(activeBranchDeep > noActiveBranchDeep) {
+      root.left = leftRotate(root.left);
+    }
     return rightRotate(root);
   } else {
+    const activeBranchDeep = getDeep(root.right.left);
+    const noActiveBranchDeep = getDeep(root.right.right);
+    if(activeBranchDeep > noActiveBranchDeep) {
+      root.right = rightRotate(root.right);
+    }
     return leftRotate(root);
   }
 }
